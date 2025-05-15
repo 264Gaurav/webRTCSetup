@@ -24,6 +24,8 @@ This project demonstrates a simple WebRTC setup where two users can exchange SDP
 
 - A modern web browser with WebRTC support (e.g., Chrome, Firefox, Edge).
 
-## License
 
-This project is open-source and available under the [MIT License](LICENSE).
+
+## TRY IT 
+
+https://webrtc-u6ef.onrender.com/
