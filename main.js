@@ -28,6 +28,26 @@ let createOffer = async () => {
     peerConnection.onicecandidate = async (event) => {
         // Event that fires off when a new offer ICE candidate is created
         if (event.candidate) {
+
+            //to check if the candidate is a local IP or public IP or relay IP
+            const candidate = event.candidate;
+            console.log('ICE Candidate:', candidate);
+
+            // Parse the candidate to determine the type of IP
+            const candidateType = candidate.type; // 'host', 'srflx', or 'relay'
+            const candidateAddress = candidate.address || candidate.ip; // IP address of the candidate
+
+            if (candidateType === 'host') {
+                console.log(`Local IP: ${candidateAddress}`);
+            } else if (candidateType === 'srflx') {
+                console.log(`Public IP (via STUN): ${candidateAddress}`);
+            } else if (candidateType === 'relay') {
+                console.log(`Relay IP (via TURN): ${candidateAddress}`);
+            }
+
+
+
+
             document.getElementById('offer-sdp').value = JSON.stringify(peerConnection.localDescription);
         }
     };
@@ -43,6 +63,24 @@ let createAnswer = async () => {
         // Event that fires off when a new answer ICE candidate is created
         if (event.candidate) {
             console.log('Adding answer candidate...:', event.candidate);
+
+            //to check if the candidate is a local IP or public IP or relay IP
+            const candidate = event.candidate;
+            console.log('ICE Candidate:', candidate);
+
+            // Parse the candidate to determine the type of IP
+            const candidateType = candidate.type; // 'host', 'srflx', or 'relay'
+            const candidateAddress = candidate.address || candidate.ip; // IP address of the candidate
+
+            if (candidateType === 'host') {
+                console.log(`Local IP: ${candidateAddress}`);
+            } else if (candidateType === 'srflx') {
+                console.log(`Public IP (via STUN): ${candidateAddress}`);
+            } else if (candidateType === 'relay') {
+                console.log(`Relay IP (via TURN): ${candidateAddress}`);
+            }
+
+
             document.getElementById('answer-sdp').value = JSON.stringify(peerConnection.localDescription);
         }
     };
