@@ -1,4 +1,11 @@
-let peerConnection = new RTCPeerConnection();
+// let peerConnection = new RTCPeerConnection();
+
+const peerConnection = new RTCPeerConnection({
+    iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' } // Google's public STUN server
+    ]
+});
+
 let localStream;
 let remoteStream;
 
